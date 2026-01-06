@@ -2,9 +2,27 @@
 
 @section('content')
     {{-- Page Header --}}
-    <div class="mb-6">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Dashboard Perpustakaan</h2>
-        <p class="text-gray-500 dark:text-gray-400">{{ now()->translatedFormat('l, d F Y') }}</p>
+    <div class="mb-6 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Dashboard Perpustakaan</h2>
+            <div x-data="{ 
+                date: '{{ now()->translatedFormat('l, d F Y') }}',
+                time: '{{ now()->format('H:i:s') }}',
+                init() {
+                    setInterval(() => {
+                        const now = new Date();
+                        // Format time manually to match local timezone
+                        this.time = now.toLocaleTimeString('id-ID', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                        // Update date optionally if it changes
+                    }, 1000);
+                }
+            }" class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+                <span x-text="date"></span>
+                <span class="text-gray-300 dark:text-gray-600">|</span>
+                <span x-text="time" class="font-mono font-medium text-blue-600 dark:text-blue-400"></span>
+                <span class="text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 px-1.5 py-0.5 rounded">WITA</span>
+            </div>
+        </div>
     </div>
 
     {{-- Stats Cards --}}
