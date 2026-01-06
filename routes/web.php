@@ -9,9 +9,10 @@ use App\Http\Controllers\Library\MemberController;
 use App\Http\Controllers\Library\CirculationController;
 use App\Http\Controllers\Library\VisitorController;
 use App\Http\Controllers\Library\FineController;
-use App\Http\Controllers\Library\ReportController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -84,10 +85,30 @@ Route::get('/signup', function () {
 })->name('signup');
 
 // Profile
-// Profile
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
 });
+
+// Email Verification
+Route::middleware('auth')->group(function () {
+    Route::get('/email/verify', function () {
+        return view('pages.auth.verify-email');
+    })->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect()->route('dashboard');
+    })->middleware('signed')->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    })->middleware('throttle:6,1')->name('verification.send');
+});
+
+// Google OAuth
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
