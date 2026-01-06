@@ -152,19 +152,15 @@
                     <!-- ===== Common Grid Shape Start ===== -->
                     <x-common.common-grid-shape/>
                     <div class="flex max-w-sm flex-col items-center">
-                        <a href="/" class="mb-8 block transition-transform duration-500 hover:scale-105">
-                            <div class="relative group">
-                                <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                                <img class="relative rounded-2xl bg-white/5 p-2 ring-1 ring-white/10" src="./images/logo/1.png" alt="Logo" />
-                            </div>
+                        <a href="/" class="mb-6 block transition-opacity hover:opacity-80">
+                            <img class="w-full h-auto drop-shadow-2xl" src="./images/logo/1.png" alt="Logo" />
                         </a>
                         <div class="text-center">
-                            <h2 class="mb-2 text-2xl font-bold tracking-tight text-white">
-                                Selamat Datang 📖
+                            <h2 class="mb-1.5 text-2xl font-bold text-white tracking-tight">
+                                Selamat Datang
                             </h2>
-                            <p class="text-gray-400 dark:text-white/60 text-sm leading-relaxed">
-                                Di Sistem Perpustakaan Digital.<br>
-                                Silakan masuk untuk mengelola koleksi dan transaksi Anda.
+                            <p class="text-gray-400 dark:text-white/60 text-sm">
+                                Sistem Perpustakaan Digital
                             </p>
                         </div>
                     </div>
