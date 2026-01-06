@@ -151,9 +151,11 @@
             </div>
             <div class="bg-brand-950 relative hidden h-full w-full items-center lg:grid lg:w-1/2 dark:bg-white/5">
                 <div class="z-1 flex items-center justify-center">
+                    <!-- ===== Common Grid Shape Start ===== -->
+                    <x-common.common-grid-shape />
                     <div class="flex max-w-sm flex-col items-center">
                         <a href="/" class="mb-6 block transition-opacity hover:opacity-80">
-                            <img class="w-full h-auto" src="./images/logo/1.png" alt="Logo" />
+                            <img class="w-full h-auto drop-shadow-2xl" src="./images/logo/1.png" alt="Logo" />
                         </a>
                         <div class="text-center">
                             <h2 class="mb-1.5 text-2xl font-bold text-white tracking-tight">
