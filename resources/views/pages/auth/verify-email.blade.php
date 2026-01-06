@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.fullscreen-layout')
 
 @section('content')
 <div class="flex h-screen items-center justify-center bg-gray-100 dark:bg-brand-950">
